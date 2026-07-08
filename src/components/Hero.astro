@@ -1,0 +1,223 @@
+---
+---
+<section class="hero">
+  <div class="halftone ht-fade-tl ht-hero-l"></div>
+  <div class="halftone ht-fade-br ht-hero-r"></div>
+  <div class="wrap grid">
+    <div class="copy">
+      <span class="kicker">hi, I'm Jun Seng 👋</span>
+      <h1>I build things with <span class="hl">AI</span> that actually ship.</h1>
+      <p class="sub">
+        Videos, automations, and content systems — built solo, with AI doing the heavy
+        lifting. Everything I learn along the way ends up here as a free guide.
+      </p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="/guides/">Browse free guides</a>
+        <a class="btn btn-secondary" href="/about/">About me</a>
+      </div>
+    </div>
+
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="layer slab-layer" data-depth="12">
+        <div class="slab"></div>
+      </div>
+      <div class="layer card-layer" data-depth="26">
+        <div class="photo-card">
+          <span class="tag">SAY HI</span>
+          <img src="/img/hero.webp" alt="" width="922" height="1400" />
+
+          <div class="layer-inner sticker-burst" data-depth="22">
+            <svg class="sticker" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="50,4 58,28 82,20 66,40 92,46 66,52 82,74 58,62 50,90 42,62 18,74 34,52 8,46 34,40 18,20 42,28"
+                fill="var(--mustard)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+              <text x="50" y="56" text-anchor="middle" font-family="Archivo Black" font-size="15" fill="var(--ink)">AI</text>
+            </svg>
+          </div>
+
+          <div class="layer-inner sticker-bolt" data-depth="30">
+            <svg class="sticker" viewBox="0 0 60 100" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="38,2 8,54 26,54 18,98 54,42 34,42"
+                fill="var(--orange)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="layer-inner sticker-smiley" data-depth="16">
+            <svg class="sticker" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="42" fill="var(--off-white)" stroke="var(--ink)" stroke-width="4"/>
+              <circle cx="34" cy="42" r="6" fill="var(--ink)"/>
+              <circle cx="66" cy="42" r="6" fill="var(--ink)"/>
+              <path d="M28,60 Q50,80 72,60" stroke="var(--ink)" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; padding: 64px 0 96px; overflow: hidden; }
+  .ht-hero-l { top: 44px; left: -150px; width: 260px; height: 380px; }
+  .ht-hero-r { bottom: -30px; right: -50px; width: 300px; height: 270px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 0.82fr;
+    align-items: center;
+    gap: 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .kicker {
+    display: inline-block;
+    font-weight: 700;
+    background: var(--off-white);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 999px;
+    padding: 8px 20px;
+    box-shadow: 3px 3px 0 var(--ink);
+    margin-bottom: 26px;
+    rotate: -2deg;
+    font-size: 0.98rem;
+  }
+  .sub {
+    font-size: 1.18rem;
+    line-height: 1.5;
+    max-width: 40ch;
+    margin: 0 0 36px;
+    font-weight: 500;
+  }
+  .ctas { display: flex; gap: 18px; flex-wrap: wrap; }
+
+  /* photo stage: layered — mustard slab + orange photo card + stickers */
+  .stage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 520px;
+  }
+  .layer, .layer-inner { will-change: transform; }
+  .slab-layer { position: absolute; z-index: 0; }
+  .slab {
+    width: 330px;
+    height: 430px;
+    border-radius: 16px;
+    border: var(--border-w) solid var(--ink);
+    background: var(--mustard);
+    margin: -60px 92px 0 0;
+    rotate: -7deg;
+    box-shadow: 8px 8px 0 var(--ink);
+    position: relative;
+  }
+  .slab::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 10px;
+    background-image: radial-gradient(rgba(22, 19, 17, 0.28) 2px, transparent 2.4px);
+    background-size: 13px 13px;
+    -webkit-mask-image: radial-gradient(circle at 30% 70%, #000 30%, transparent 80%);
+            mask-image: radial-gradient(circle at 30% 70%, #000 30%, transparent 80%);
+  }
+  .card-layer { position: relative; z-index: 2; }
+  .photo-card {
+    width: 360px;
+    background: var(--orange);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 16px;
+    box-shadow: 14px 14px 0 var(--ink);
+    rotate: 3deg;
+    padding: 22px 20px 0;
+    position: relative;
+  }
+  .photo-card .tag {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    z-index: 3;
+    background: var(--mustard);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 8px;
+    padding: 7px 16px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    box-shadow: 3px 3px 0 var(--ink);
+    rotate: -7deg;
+  }
+  .photo-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    rotate: -3deg;
+    translate: 0 4px;
+  }
+  .sticker-burst { position: absolute; top: -58px; right: -46px; width: 118px; z-index: 4; }
+  .sticker-bolt { position: absolute; bottom: 60px; left: -58px; width: 66px; z-index: 4; }
+  .sticker-smiley { position: absolute; bottom: -38px; right: -6px; width: 82px; z-index: 4; }
+  .sticker-burst svg, .sticker-bolt svg, .sticker-smiley svg { display: block; width: 100%; }
+
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: 1fr; }
+    .stage { order: -1; margin-bottom: 24px; min-height: 500px; }
+  }
+  @media (max-width: 420px) {
+    .stage { min-height: 460px; }
+    .photo-card { width: 86vw; max-width: 300px; }
+    .slab { width: 74vw; max-width: 280px; height: 400px; margin-right: 40px; }
+    .sticker-burst { width: 92px; top: -42px; right: -14px; }
+    .sticker-bolt { left: -24px; }
+  }
+</style>
+
+<script>
+  const stage = document.getElementById('stage')
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (stage && !reduced) {
+    const layers = [...stage.querySelectorAll<HTMLElement>('[data-depth]')]
+    let tx = 0
+    let ty = 0
+    let cx = 0
+    let cy = 0
+    let raf = 0
+
+    const render = () => {
+      cx += (tx - cx) * 0.08
+      cy += (ty - cy) * 0.08
+      for (const el of layers) {
+        const d = Number(el.dataset.depth) / 2
+        el.style.transform = `translate3d(${cx * d}px, ${cy * d}px, 0)`
+      }
+      if (Math.abs(tx - cx) + Math.abs(ty - cy) > 0.001) raf = requestAnimationFrame(render)
+      else raf = 0
+    }
+    const kick = () => {
+      if (!raf) raf = requestAnimationFrame(render)
+    }
+
+    if (window.matchMedia('(hover: hover)').matches) {
+      window.addEventListener('pointermove', (e) => {
+        tx = (e.clientX / innerWidth) * 2 - 1
+        ty = (e.clientY / innerHeight) * 2 - 1
+        kick()
+      })
+    } else {
+      window.addEventListener(
+        'scroll',
+        () => {
+          ty = Math.max(-1, Math.min(1, (scrollY / innerHeight) * 2 - 0.3))
+          tx = ty * 0.4
+          kick()
+        },
+        { passive: true },
+      )
+      window.addEventListener('deviceorientation', (e) => {
+        if (e.gamma === null || e.beta === null) return
+        tx = Math.max(-1, Math.min(1, e.gamma / 30))
+        ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30))
+        kick()
+      })
+    }
+  }
+</script>

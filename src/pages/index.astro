@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../layouts/Base.astro'
+import Hero from '../components/Hero.astro'
+import GuideCard from '../components/GuideCard.astro'
+import NewsletterBox from '../components/NewsletterBox.astro'
+
+const guides = (await getCollection('guides'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3)
+
+const services = [
+  {
+    icon: '🎬',
+    title: 'AI content systems',
+    text: 'Video and social content pipelines where AI does the production and a human keeps the taste.',
+  },
+  {
+    icon: '⚙️',
+    title: 'Store & ops automation',
+    text: 'The repetitive work in a small online business — orders, updates, posting — handled by workflows that just run.',
+  },
+  {
+    icon: '🧭',
+    title: 'AI for non-techies',
+    text: 'Plain-language help picking the right AI tool for the job, without the hype or the jargon.',
+  },
+]
+---
+
+<Base
+  title="Jun Seng — I build things with AI that actually ship"
+  description="Solo builder from Malaysia. Videos, automations, and content systems built with AI — everything learned along the way published as free guides."
+>
+  <Hero />
+
+  <section class="guides">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Free</span>
+        <h2 class="display">Free guides</h2>
+      </div>
+      <div class="cards">
+        {guides.map((g, i) => (
+          <GuideCard
+            slug={g.id}
+            title={g.data.title}
+            topic={g.data.topic}
+            tool={g.data.tool}
+            index={i}
+            placeholder={g.data.placeholder}
+          />
+        ))}
+      </div>
+      <p class="more"><a href="/guides/">See the whole library →</a></p>
+      <NewsletterBox />
+    </div>
+  </section>
+
+  <section class="what">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What I do</span>
+        <h2 class="display">AI you can put to work</h2>
+      </div>
+      <div class="cards">
+        {services.map((s, i) => (
+          <div class:list={['card', ['fill-mustard', 'fill-off', 'fill-orange'][i % 3]]}>
+            <p class="icon">{s.icon}</p>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <div class="cta-inner">
+        <div class="halftone"></div>
+        <h2 class="display">got a project or a question?</h2>
+        <p>I read every message. Tell me what you're building.</p>
+        <a class="btn-contact" href="/contact/">Get in touch →</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 34px;
+  }
+  .icon { font-size: 2rem; margin: 0 0 0.3rem; }
+  .more { margin-top: 2.2rem; }
+  .more a {
+    font-weight: 800;
+    text-decoration: none;
+    border-bottom: 3px solid var(--orange);
+    padding-bottom: 2px;
+  }
+
+  .cta-band { padding: 1rem 0 3rem; }
+  .cta-inner {
+    position: relative;
+    background: var(--orange);
+    color: var(--off-white);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 20px;
+    box-shadow: 12px 12px 0 var(--ink);
+    padding: 56px 48px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .cta-inner .halftone {
+    top: -20px;
+    left: -20px;
+    width: 200px;
+    height: 200px;
+    opacity: 0.55;
+    background-image: radial-gradient(var(--off-white) 1.8px, transparent 2px);
+  }
+  .cta-inner h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin: 0 0 12px; position: relative; z-index: 1; }
+  .cta-inner p { font-size: 1.15rem; margin: 0 0 30px; font-weight: 500; position: relative; z-index: 1; }
+  .btn-contact {
+    position: relative;
+    z-index: 1;
+    background: var(--mustard);
+    color: var(--ink);
+    border: var(--border-w) solid var(--ink);
+    padding: 18px 40px;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    box-shadow: 6px 6px 0 var(--ink);
+    text-decoration: none;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .btn-contact:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+
+  @media (max-width: 960px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 420px) {
+    .cta-inner { padding: 40px 24px; }
+  }
+</style>

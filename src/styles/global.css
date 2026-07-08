@@ -1,0 +1,182 @@
+@import '@fontsource/archivo-black';
+@import '@fontsource/work-sans/400.css';
+@import '@fontsource/work-sans/500.css';
+@import '@fontsource/work-sans/600.css';
+@import '@fontsource/work-sans/700.css';
+@import '@fontsource/work-sans/800.css';
+
+:root {
+  --cream: #FBF1DD;
+  --ink: #161311;
+  --orange: #E6572E;
+  --mustard: #F4B400;
+  --off-white: #FBF7EC;
+  --border-w: 3px;
+  --font-display: 'Archivo Black', 'Work Sans', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.display, h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.0;
+}
+
+h1 { font-size: clamp(2.7rem, 5.5vw, 5rem); letter-spacing: -0.01em; margin: 0 0 26px; }
+h2 { font-size: clamp(2.2rem, 3.5vw, 2.7rem); margin: 0 0 0.5em; }
+h3 { font-size: 1.3rem; line-height: 1.32; font-weight: 800; margin: 0 0 0.5em; }
+
+p { margin: 0 0 1em; }
+
+a { color: var(--ink); }
+
+img { max-width: 100%; height: auto; }
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- halftone dot texture (pure CSS, no assets) ---------- */
+.halftone {
+  position: absolute;
+  background-image: radial-gradient(var(--ink) 2.7px, transparent 3px);
+  background-size: 11px 11px;
+  pointer-events: none;
+  z-index: 0;
+}
+.ht-fade-tl { -webkit-mask-image: radial-gradient(circle at 22% 22%, #000 52%, transparent 88%); mask-image: radial-gradient(circle at 22% 22%, #000 52%, transparent 88%); }
+.ht-fade-br { -webkit-mask-image: radial-gradient(circle at 78% 78%, #000 52%, transparent 88%); mask-image: radial-gradient(circle at 78% 78%, #000 52%, transparent 88%); }
+.ht-fade-r  { -webkit-mask-image: linear-gradient(90deg, transparent, #000 55%); mask-image: linear-gradient(90deg, transparent, #000 55%); }
+
+/* ---------- sticker treatment: white halo + hard shadow ---------- */
+.sticker {
+  filter:
+    drop-shadow(5px 5px 0 var(--ink))
+    drop-shadow(1.6px 0 0 #fff)   drop-shadow(-1.6px 0 0 #fff)
+    drop-shadow(0 1.6px 0 #fff)   drop-shadow(0 -1.6px 0 #fff)
+    drop-shadow(3.2px 0 0 #fff)   drop-shadow(-3.2px 0 0 #fff)
+    drop-shadow(0 3.2px 0 #fff)   drop-shadow(0 -3.2px 0 #fff)
+    drop-shadow(2.3px 2.3px 0 #fff) drop-shadow(-2.3px 2.3px 0 #fff)
+    drop-shadow(2.3px -2.3px 0 #fff) drop-shadow(-2.3px -2.3px 0 #fff);
+}
+.sticker--sm {
+  filter:
+    drop-shadow(3px 3px 0 var(--ink))
+    drop-shadow(1.2px 0 0 #fff)   drop-shadow(-1.2px 0 0 #fff)
+    drop-shadow(0 1.2px 0 #fff)   drop-shadow(0 -1.2px 0 #fff)
+    drop-shadow(2.2px 2.2px 0 #fff) drop-shadow(-2.2px 2.2px 0 #fff)
+    drop-shadow(2.2px -2.2px 0 #fff) drop-shadow(-2.2px -2.2px 0 #fff);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  border: var(--border-w) solid var(--ink);
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  text-decoration: none;
+  color: var(--ink);
+}
+.btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+.btn-pill { padding: 10px 22px; border-radius: 999px; background: var(--mustard); font-size: 0.95rem; }
+.btn-primary { padding: 16px 30px; border-radius: 12px; background: var(--orange); color: var(--off-white); font-size: 1.05rem; box-shadow: 6px 6px 0 var(--ink); }
+.btn-primary:hover { box-shadow: 3px 3px 0 var(--ink); }
+.btn-secondary { padding: 16px 30px; border-radius: 12px; background: var(--off-white); font-size: 1.05rem; box-shadow: 6px 6px 0 var(--ink); }
+.btn-secondary:hover { box-shadow: 3px 3px 0 var(--ink); }
+
+/* ---------- eyebrow chip + section heading ---------- */
+.eyebrow {
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 5px 12px;
+  border-radius: 6px;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+.section-head { display: flex; align-items: baseline; gap: 16px; margin: 0 0 8px; }
+.section-head h2 { margin: 0; }
+
+/* ---------- filter pills ---------- */
+.pill {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: var(--border-w) solid var(--ink);
+  background: var(--off-white);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.pill:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+.pill.active { background: var(--orange); color: var(--off-white); }
+
+/* ---------- cards ---------- */
+.card {
+  position: relative;
+  border: var(--border-w) solid var(--ink);
+  border-radius: 14px;
+  padding: 34px 26px 28px;
+  box-shadow: 8px 8px 0 var(--ink);
+  background: var(--off-white);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.card.fill-orange { background: var(--orange); color: var(--off-white); transform: rotate(-2deg); }
+.card.fill-mustard { background: var(--mustard); transform: rotate(1.5deg); }
+.card.fill-off { background: var(--off-white); transform: rotate(-1deg); }
+.card:hover { transform: translate(-3px, -3px) rotate(0deg); box-shadow: 12px 12px 0 var(--ink); }
+
+/* highlight mark (marker treatment) */
+.hl, .lead-mark {
+  background: var(--mustard);
+  color: var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  padding: 0 10px;
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+.lead-mark { box-shadow: 3px 3px 0 var(--ink); padding: 0 6px; font-weight: 700; transform: none; }
+
+section { padding: 3rem 0; }
+
+@media (max-width: 420px) {
+  .wrap { padding: 0 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

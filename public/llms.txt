@@ -1,0 +1,28 @@
+# Jun Seng — I build things with AI that actually ship
+
+> Personal site of Jun Seng, a solo builder from Malaysia with no tech background who builds full-time with AI tools: video pipelines, business automations, and content systems. Everything he learns is published as free, plain-language guides aimed at non-programmers.
+
+Site: https://nickphang97-collab.github.io
+Contact: nickphang97@gmail.com
+
+## Pages
+
+- [Home](https://nickphang97-collab.github.io/): who Jun Seng is and what he builds
+- [Free guides](https://nickphang97-collab.github.io/guides/): the full guide library, filterable by topic and AI tool
+- [About](https://nickphang97-collab.github.io/about/): background — not a programmer, builds anyway
+- [Contact](https://nickphang97-collab.github.io/contact/): email contact
+
+## Guides
+
+- [How I use AI coding tools as a non-programmer](https://nickphang97-collab.github.io/guides/ai-coding-non-programmer/): from idea to working software without a CS degree
+- [Give your AI a harness: rules, memory, and guardrails](https://nickphang97-collab.github.io/guides/ai-harness-rules-memory-guardrails/): written rules, persistent memory, and safety rails for AI assistants
+- [AI text-to-speech narration: what works, what to avoid](https://nickphang97-collab.github.io/guides/ai-tts-narration/): natural-sounding AI voiceover and the traps that waste time and money
+- [How a faceless YouTube video actually gets made with AI](https://nickphang97-collab.github.io/guides/ai-video-pipeline-overview/): the full pipeline from idea to uploaded video
+- [Custom AI skills: teach your assistant a job once, run it forever](https://nickphang97-collab.github.io/guides/custom-ai-skills/): when you need a written playbook for your AI and what a good one contains
+- [How to fact-check AI output before you publish](https://nickphang97-collab.github.io/guides/fact-check-ai-output/): a simple checking habit that keeps confident AI mistakes out of your content
+- [5 rules for image prompts that actually work](https://nickphang97-collab.github.io/guides/image-prompt-rules/): writing prompts that produce intentional-looking AI images
+- [What n8n can automate in a small online store](https://nickphang97-collab.github.io/guides/n8n-small-store-automation/): repetitive shop jobs a free workflow tool can take over
+- [I build AI content on a laptop with no real GPU — here's how](https://nickphang97-collab.github.io/guides/no-gpu-laptop-ai-work/): full-time AI work with the cloud doing the heavy lifting
+- [An Obsidian second brain your AI actually maintains](https://nickphang97-collab.github.io/guides/obsidian-second-brain-ai/): plain markdown notes plus the folder structure that keeps them from rotting
+- [Automating daily social posting — with a human gate so it never posts junk](https://nickphang97-collab.github.io/guides/social-posting-human-gate/): AI drafts daily, a human presses publish
+- [Which AI tool for which job — a plain-language map](https://nickphang97-collab.github.io/guides/which-ai-tool-for-which-job/): what each category of AI tool is for and how to pick

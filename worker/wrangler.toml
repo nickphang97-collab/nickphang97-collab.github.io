@@ -1,0 +1,7 @@
+name = "junseng-forms"
+main = "src/index.ts"
+compatibility_date = "2026-07-01"
+
+[[kv_namespaces]]
+binding = "SUBS"
+id = "7d4de8907b7c46aba5dccec5ab6836a8"

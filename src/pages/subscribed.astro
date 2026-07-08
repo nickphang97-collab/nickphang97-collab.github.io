@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base title="You're in — Jun Seng" description="Subscription confirmed — new guides will land in your inbox.">
+  <section>
+    <div class="wrap box">
+      <svg class="sticker sticker--sm" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="50,4 58,28 82,20 66,40 92,46 66,52 82,74 58,62 50,90 42,62 18,74 34,52 8,46 34,40 18,20 42,28"
+          fill="var(--orange)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+      </svg>
+      <h1 class="display">You're <span class="hl">in.</span></h1>
+      <p>
+        Whenever a new guide ships, it goes straight to your inbox —
+        no spam, ever.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/guides/">Read the guides</a>
+        <a class="btn btn-secondary" href="/">Back home</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  section { padding: 5rem 0; }
+  .box { max-width: 40rem; text-align: center; }
+  .sticker { width: 90px; margin-bottom: 24px; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin-bottom: 20px; }
+  p { font-size: 1.15rem; font-weight: 500; max-width: 42ch; margin: 0 auto 32px; }
+  .actions { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+</style>

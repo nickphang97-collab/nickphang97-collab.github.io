@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import GuideCard from '../../components/GuideCard.astro'
+
+const guides = (await getCollection('guides')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+const topics = [...new Set(guides.map((g) => g.data.topic))].sort()
+const tools = [...new Set(guides.map((g) => g.data.tool))].sort()
+---
+
+<Base
+  title="Free guides — Jun Seng"
+  description="Free plain-language guides on building with AI — content pipelines, automation, and picking the right tool — filterable by topic and AI tool."
+>
+  <section class="library">
+    <div class="halftone ht-fade-br ht-lib"></div>
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">The whole library</span>
+        <h1 class="display">Free guides</h1>
+        <p class="sub">
+          Everything I figure out while building with AI, written up so you can use it too.
+          All free. Filter by what you want to do, or by the tool you use.
+        </p>
+      </div>
+
+      <p class="label">filter by topic</p>
+      <div class="pills" data-group="topic">
+        <button class="pill active" data-value="all">All</button>
+        {topics.map((t) => <button class="pill" data-value={t}>{t}</button>)}
+      </div>
+
+      <p class="label">filter by AI tool</p>
+      <div class="pills" data-group="tool">
+        <button class="pill active" data-value="all">All tools</button>
+        {tools.map((t) => <button class="pill" data-value={t}>{t}</button>)}
+      </div>
+
+      <p class="count" id="count">Showing {guides.length} of {guides.length} guides</p>
+
+      <div class="cards" id="cards">
+        {guides.map((g, i) => (
+          <GuideCard
+            slug={g.id}
+            title={g.data.title}
+            topic={g.data.topic}
+            tool={g.data.tool}
+            index={i}
+            placeholder={g.data.placeholder}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .library { position: relative; overflow: hidden; padding-top: 3.5rem; }
+  .ht-lib { top: 10px; right: -60px; width: 260px; height: 260px; }
+  .head { max-width: 44rem; margin: 0 0 2.5rem; }
+  .head h1 { margin-top: 18px; }
+  .sub { font-size: 1.18rem; font-weight: 500; max-width: 46ch; }
+  .label {
+    margin: 1.6rem 0 0.7rem;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .pills { display: flex; gap: 12px; flex-wrap: wrap; }
+  .count { font-weight: 600; font-size: 0.9rem; margin-top: 1.6rem; opacity: 0.7; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 1.4rem;
+  }
+  @media (max-width: 1023px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const state: Record<string, string> = { topic: 'all', tool: 'all' }
+  const cards = [...document.querySelectorAll<HTMLElement>('#cards .guide')]
+  const count = document.getElementById('count')
+
+  const apply = () => {
+    let shown = 0
+    for (const c of cards) {
+      const ok =
+        (state.topic === 'all' || c.dataset.topic === state.topic) &&
+        (state.tool === 'all' || c.dataset.tool === state.tool)
+      c.style.display = ok ? '' : 'none'
+      if (ok) shown++
+    }
+    if (count) count.textContent = `Showing ${shown} of ${cards.length} guides`
+  }
+
+  for (const group of document.querySelectorAll<HTMLElement>('.pills')) {
+    const name = group.dataset.group
+    if (!name) continue
+    group.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLElement>('.pill')
+      if (!btn || !btn.dataset.value) return
+      state[name] = btn.dataset.value
+      group.querySelectorAll('.pill').forEach((p) => p.classList.toggle('active', p === btn))
+      apply()
+    })
+  }
+</script>

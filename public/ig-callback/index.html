@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Authorization callback</title>
+<style>
+  body{font-family:system-ui,-apple-system,sans-serif;max-width:640px;margin:8vh auto;padding:0 20px;line-height:1.55;color:#1a1a1a}
+  code{background:#f2f2f2;padding:2px 6px;border-radius:4px;word-break:break-all;font-size:13px}
+  .box{background:#f7f7f7;border:1px solid #ddd;border-radius:8px;padding:16px;margin:18px 0}
+  button{font-size:15px;padding:8px 14px;border-radius:6px;border:1px solid #aaa;background:#fff;cursor:pointer}
+  .err{color:#b00020}
+</style>
+</head>
+<body>
+<h2 id="title">Authorization received ✓</h2>
+<p id="msg">Handing the code back to your local app…</p>
+<div class="box" id="codebox" style="display:none">
+  <p>This page didn't redirect automatically. Copy this code and paste it to your terminal:</p>
+  <p><code id="code"></code></p>
+  <button onclick="navigator.clipboard.writeText(document.getElementById('code').textContent);this.textContent='Copied ✓'">Copy code</button>
+</div>
+<script>
+(function () {
+  var p = new URLSearchParams(location.search);
+  var code = p.get('code');
+  var err = p.get('error_description') || p.get('error');
+  if (err) {
+    document.getElementById('title').textContent = 'Authorization error';
+    document.getElementById('msg').className = 'err';
+    document.getElementById('msg').textContent = err;
+    return;
+  }
+  if (!code) {
+    document.getElementById('msg').textContent = 'No authorization code found in this URL.';
+    return;
+  }
+  // Always reveal the code first so it is recoverable even if the local bounce is blocked.
+  document.getElementById('code').textContent = code;
+  document.getElementById('codebox').style.display = 'block';
+  // Hand the code to the local OAuth listener. Top-level navigation to http://localhost is permitted
+  // by browsers (localhost is a trustworthy origin); no tunnel needed. If blocked, the box above remains.
+  try { location.replace('http://localhost:4017/ig-callback/' + location.search); } catch (e) {}
+})();
+</script>
+</body>
+</html>

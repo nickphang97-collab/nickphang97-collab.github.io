@@ -1,0 +1,132 @@
+---
+import Base from '../layouts/Base.astro'
+import { CONTACT_EMAIL, FORM_ENDPOINT } from '../config'
+---
+
+<Base title="Contact — Jun Seng" description="Get in touch with Jun Seng — tell me what you're building. Plain language is perfect.">
+  <section>
+    <div class="wrap">
+      <div class="cta-inner">
+        <div class="halftone"></div>
+        <span class="kicker">got a project or a question?</span>
+        <h1 class="display">Let's talk.</h1>
+        <p class="lede">
+          Tell me what you're trying to do — plain language is perfect.
+          I read every message, usually within a day.
+        </p>
+
+        <form action={FORM_ENDPOINT} method="POST" class="contact-form">
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <label>
+            <span>Your name</span>
+            <input type="text" name="name" required placeholder="e.g. Sarah" />
+          </label>
+          <label>
+            <span>Your email</span>
+            <input type="email" name="email" required placeholder="you@example.com" />
+          </label>
+          <label>
+            <span>What are you building / asking?</span>
+            <textarea name="message" required rows="5" placeholder="Plain language is perfect. What are you trying to get done?"></textarea>
+          </label>
+          <button type="submit" class="btn-contact">Send it →</button>
+        </form>
+
+        <p class="note">
+          Prefer plain email? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  section { padding: 4rem 0; }
+  .cta-inner {
+    position: relative;
+    max-width: 44rem;
+    margin: 0 auto;
+    background: var(--orange);
+    color: var(--off-white);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 20px;
+    box-shadow: 12px 12px 0 var(--ink);
+    padding: 56px 48px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .cta-inner .halftone {
+    top: -20px;
+    left: -20px;
+    width: 200px;
+    height: 200px;
+    opacity: 0.55;
+    background-image: radial-gradient(var(--off-white) 1.8px, transparent 2px);
+  }
+  .kicker {
+    display: inline-block;
+    font-weight: 700;
+    background: var(--off-white);
+    color: var(--ink);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 999px;
+    padding: 8px 20px;
+    box-shadow: 3px 3px 0 var(--ink);
+    margin-bottom: 26px;
+    rotate: -2deg;
+    font-size: 0.98rem;
+    position: relative;
+    z-index: 1;
+  }
+  h1 { position: relative; z-index: 1; margin: 0 0 12px; font-size: clamp(2.2rem, 5vw, 3.4rem); }
+  .lede { position: relative; z-index: 1; font-size: 1.15rem; font-weight: 500; margin-bottom: 30px; }
+
+  .contact-form {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: left;
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  label { display: flex; flex-direction: column; gap: 6px; font-weight: 800; font-size: 0.95rem; }
+  input[type='text'], input[type='email'], textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--off-white);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  input:focus, textarea:focus { outline: 3px solid var(--mustard); outline-offset: 2px; }
+  textarea { resize: vertical; }
+  .btn-contact {
+    align-self: center;
+    background: var(--mustard);
+    color: var(--ink);
+    border: var(--border-w) solid var(--ink);
+    padding: 16px 38px;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 800;
+    box-shadow: 6px 6px 0 var(--ink);
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    margin-top: 6px;
+  }
+  .btn-contact:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+  .note { position: relative; z-index: 1; font-size: 0.95rem; opacity: 0.9; margin: 26px 0 0; }
+  .note a { color: var(--off-white); font-weight: 700; }
+
+  @media (max-width: 420px) {
+    .cta-inner { padding: 40px 20px; }
+  }
+</style>

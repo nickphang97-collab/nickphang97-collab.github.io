@@ -1,0 +1,59 @@
+---
+import { FORM_ENDPOINT } from '../config'
+---
+
+<div class="nl-box">
+  <span class="eyebrow">Free, occasionally</span>
+  <h3>New guides, straight to your inbox</h3>
+  <p>When I figure something out worth writing up, you get it. No spam, unsubscribe anytime.</p>
+  <form action={FORM_ENDPOINT} method="post" class="nl-form">
+    <input type="hidden" name="form_type" value="subscribe" />
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address" />
+    <button type="submit">Get the guides →</button>
+  </form>
+</div>
+
+<style>
+  .nl-box {
+    border: var(--border-w) solid var(--ink);
+    border-radius: 14px;
+    background: var(--mustard);
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 30px 28px;
+    margin: 2.5rem 0 0;
+    rotate: -0.5deg;
+  }
+  .nl-box h3 { margin: 14px 0 6px; font-size: 1.4rem; }
+  .nl-box p { font-weight: 500; margin: 0 0 18px; max-width: 48ch; }
+  .nl-form { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .nl-form input[type='email'] {
+    flex: 1;
+    min-width: 220px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--off-white);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .nl-form input[type='email']:focus { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .nl-form button {
+    background: var(--orange);
+    color: var(--off-white);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 800;
+    box-shadow: 4px 4px 0 var(--ink);
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .nl-form button:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+</style>

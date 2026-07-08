@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro'
+
+const personLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jun Seng',
+  url: new URL('/about/', Astro.site),
+  email: 'mailto:nickphang97@gmail.com',
+  nationality: 'Malaysia',
+  description:
+    'Solo builder from Malaysia with no tech background, building full-time with AI tools and publishing free plain-language guides.',
+  knowsAbout: ['AI content systems', 'workflow automation', 'n8n', 'AI video production'],
+})
+---
+
+<Base title="About — Jun Seng" description="Jun Seng, from Malaysia. No tech background — building full-time with AI tools and writing up everything as free guides.">
+  <script is:inline type="application/ld+json" set:html={personLd} slot="head" />
+  <section class="about">
+    <div class="halftone ht-fade-br ht-about"></div>
+    <div class="wrap grid">
+      <div class="about-photo">
+        <span class="tag">ABOUT</span>
+        <img src="/img/about.webp" alt="Jun Seng" width="880" height="900" />
+      </div>
+      <div class="about-copy">
+        <svg class="sticker sticker--sm about-burst" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="50,4 58,28 82,20 66,40 92,46 66,52 82,74 58,62 50,90 42,62 18,74 34,52 8,46 34,40 18,20 42,28"
+            fill="var(--orange)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+        <span class="eyebrow">About me</span>
+        <h1 class="display">Not a programmer. Builds anyway.</h1>
+        <p>
+          I'm Jun Seng, from Malaysia. <span class="lead-mark">No tech background</span> — no computer
+          science degree, no years at a software company. What changed everything was AI:
+          it turned "I wish this existed" into "I built it this week."
+        </p>
+        <p>
+          These days I build full-time with AI tools — video pipelines that produce
+          publishable content, automations that quietly run the boring parts of an online
+          business, and small tools that solve one real problem each.
+        </p>
+        <p>
+          Everything I learn gets written up as a <a href="/guides/">free guide</a>, in
+          plain language, because the biggest gap in AI right now isn't the technology —
+          it's ordinary people knowing what it can actually do for them.
+        </p>
+        <a class="btn btn-primary" href="/contact/">Say hi</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about { position: relative; overflow: hidden; padding: 4rem 0; }
+  .ht-about { top: 10px; right: -40px; width: 260px; height: 260px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .about-photo {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    border: var(--border-w) solid var(--ink);
+    border-radius: 16px;
+    background: var(--off-white);
+    box-shadow: 12px 12px 0 var(--ink);
+    rotate: -3deg;
+    overflow: hidden;
+  }
+  .about-photo img { display: block; width: 100%; }
+  .about-photo .tag {
+    position: absolute;
+    top: 16px;
+    left: -8px;
+    z-index: 2;
+    background: var(--orange);
+    color: var(--off-white);
+    border: var(--border-w) solid var(--ink);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    box-shadow: 3px 3px 0 var(--ink);
+    rotate: -4deg;
+  }
+  .about-copy { position: relative; }
+  .about-burst { position: absolute; top: -64px; right: 0; width: 104px; z-index: 2; }
+  .about-copy h1 { font-size: clamp(2rem, 4vw, 3.2rem); margin: 22px 0 26px; }
+  .about-copy p { font-size: 1.15rem; line-height: 1.55; font-weight: 500; margin: 0 0 22px; max-width: 52ch; }
+  .about-copy .btn { margin-top: 8px; }
+
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: 1fr; gap: 32px; }
+    .about-photo { margin: 0 auto; }
+    .about-burst { top: -50px; width: 80px; }
+  }
+</style>
