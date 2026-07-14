@@ -2,15 +2,32 @@ interface Env {
   SUBS: KVNamespace
   TG_TOKEN: string
   TG_CHAT_ID: string
+  ADMIN_TOKEN: string
 }
 
-const SITE = 'https://nickphang97-collab.github.io'
+const SITE = 'https://junsengai.com'
+const ALLOWED_ORIGINS = [
+  SITE,
+  'https://junseng.pages.dev',
+  'https://nickphang97-collab.github.io',
+]
 
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
+    if (req.method === 'GET' && new URL(req.url).pathname === '/admin/subs') {
+      const auth = req.headers.get('authorization') ?? ''
+      if (!env.ADMIN_TOKEN || auth !== `Bearer ${env.ADMIN_TOKEN}`)
+        return new Response('Forbidden', { status: 403 })
+      const list = await env.SUBS.list({ prefix: 's:' })
+      const keys = list.keys.map((k) => k.name)
+      const recent = await Promise.all(
+        keys.slice(-5).reverse().map(async (k) => JSON.parse((await env.SUBS.get(k)) ?? '{}'))
+      )
+      return Response.json({ count: list.list_complete ? keys.length : `${keys.length}+`, recent })
+    }
     if (req.method !== 'POST') return Response.redirect(`${SITE}/`, 302)
     const ref = req.headers.get('origin') ?? req.headers.get('referer') ?? ''
-    if (!ref.startsWith(SITE)) return new Response('Forbidden', { status: 403 })
+    if (!ALLOWED_ORIGINS.some((o) => ref.startsWith(o))) return new Response('Forbidden', { status: 403 })
 
     const form = await req.formData()
     const type = form.get('form_type') === 'subscribe' ? 'subscribe' : 'contact'
