@@ -24,7 +24,12 @@
       <div class="layer card-layer" data-depth="26">
         <div class="photo-card">
           <span class="tag">SAY HI</span>
-          <img src="/img/hero.webp" alt="" width="922" height="1400" />
+          <img
+            src="/img/hero.webp"
+            srcset="/img/hero-420.webp 420w, /img/hero.webp 720w"
+            sizes="(max-width: 960px) 86vw, 360px"
+            alt="" width="720" height="1094" fetchpriority="high"
+          />
 
           <div class="layer-inner sticker-burst" data-depth="22">
             <svg class="sticker" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -174,7 +179,7 @@
   const stage = document.getElementById('stage')
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-  if (stage && !reduced) {
+  if (stage && !reduced && window.matchMedia('(hover: hover)').matches) {
     const layers = [...stage.querySelectorAll<HTMLElement>('[data-depth]')]
     let tx = 0
     let ty = 0
@@ -183,10 +188,10 @@
     let raf = 0
 
     const render = () => {
-      cx += (tx - cx) * 0.08
-      cy += (ty - cy) * 0.08
+      cx += (tx - cx) * 0.18
+      cy += (ty - cy) * 0.18
       for (const el of layers) {
-        const d = Number(el.dataset.depth) / 2
+        const d = Number(el.dataset.depth) / 4
         el.style.transform = `translate3d(${cx * d}px, ${cy * d}px, 0)`
       }
       if (Math.abs(tx - cx) + Math.abs(ty - cy) > 0.001) raf = requestAnimationFrame(render)
@@ -196,28 +201,10 @@
       if (!raf) raf = requestAnimationFrame(render)
     }
 
-    if (window.matchMedia('(hover: hover)').matches) {
-      window.addEventListener('pointermove', (e) => {
-        tx = (e.clientX / innerWidth) * 2 - 1
-        ty = (e.clientY / innerHeight) * 2 - 1
-        kick()
-      })
-    } else {
-      window.addEventListener(
-        'scroll',
-        () => {
-          ty = Math.max(-1, Math.min(1, (scrollY / innerHeight) * 2 - 0.3))
-          tx = ty * 0.4
-          kick()
-        },
-        { passive: true },
-      )
-      window.addEventListener('deviceorientation', (e) => {
-        if (e.gamma === null || e.beta === null) return
-        tx = Math.max(-1, Math.min(1, e.gamma / 30))
-        ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30))
-        kick()
-      })
-    }
+    window.addEventListener('pointermove', (e) => {
+      tx = (e.clientX / innerWidth) * 2 - 1
+      ty = (e.clientY / innerHeight) * 2 - 1
+      kick()
+    })
   }
 </script>

@@ -66,6 +66,10 @@ img { max-width: 100%; height: auto; }
 .ht-fade-tl { -webkit-mask-image: radial-gradient(circle at 22% 22%, #000 52%, transparent 88%); mask-image: radial-gradient(circle at 22% 22%, #000 52%, transparent 88%); }
 .ht-fade-br { -webkit-mask-image: radial-gradient(circle at 78% 78%, #000 52%, transparent 88%); mask-image: radial-gradient(circle at 78% 78%, #000 52%, transparent 88%); }
 .ht-fade-r  { -webkit-mask-image: linear-gradient(90deg, transparent, #000 55%); mask-image: linear-gradient(90deg, transparent, #000 55%); }
+/* narrow screens: text columns widen into the dot zones — fade dots so words stay readable */
+@media (max-width: 960px) {
+  .halftone { opacity: 0.13; }
+}
 
 /* ---------- sticker treatment: white halo + hard shadow ---------- */
 .sticker {

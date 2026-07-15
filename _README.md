@@ -5,5 +5,6 @@ Real-name builder brand — same identity as FB/IG/Threads "Jun Seng". Firewall:
 
 - Build: `bun install` then `bun run build` → `dist/`
 - Entry: `src/` · style refs in `style-refs/`
+- Perf pass 2026-07-15: Lighthouse mobile 76→95, homepage 299→220KB (phone ~165KB via hero srcset), parallax tamed + off on touch, narrow-screen halftone/text collision fixed. Details + pre-pass originals: `archive/2026-07-15-perf-pass/NOTES.md`. Full-remake option evaluated + REJECTED (Claude+Codex agree) — don't re-propose; incremental only. Post-pass verify shots: `captures/2026-07-15-*`.
 - Deploy: `bunx wrangler pages deploy dist --project-name junseng` (Cloudflare = primary); push to main = GitHub Pages deploy (kept in sync). github.io stays up — Meta app URLs (`/ig-callback/`, `/legal/*`) point there, never retire it. `worker/` = Cloudflare Worker for forms (`cd worker && bunx wrangler deploy`; origin allowlist = junsengai.com + pages.dev + github.io).
 - DNS/domain hardening 2026-07-15: www CNAME live + attached to Pages; SPF `v=spf1 -all` + DMARC `p=reject` + null MX (domain sends no email — spoof-locked); auto-renew ON (expiry 2027-07-14). GSC property `https://junsengai.com` verified + sitemap Success (18 pages) under nickphang97@. DNS edits need the CF dashboard (wrangler OAuth has no DNS scope) — web-open profile `cloudflare` is logged in.
